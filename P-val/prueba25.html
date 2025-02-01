@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>P-val</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            scroll-behavior: smooth;
+            background-image: url('solo logo.jpg'); /* Agrega la imagen de fondo */
+            background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+            background-position: center; /* Centra la imagen en el fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+        }
+
+        header {
+            background-color: #ff5722;
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #ff5722;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para mejorar la legibilidad */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        h2 {
+            color: #FFA500;
+        }
+
+        .price-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .price-item {
+            text-align: center;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+        }
+
+        .price-item h3 {
+            color: #FFA500;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        .steps-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .steps-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .steps-list img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff8000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .cta-button:hover {
+            background-color: #e06b00;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e06b00;
+        }
+
+        .form-feedback {
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Selector de idioma -->
+    <div class="language-selector">
+        <button onclick="setLanguage('es')">Español</button>
+        <button onclick="setLanguage('en')">English</button>
+    </div>
+
+    <header>
+        <h1 data-translate="header-title">P-val</h1>
+        <p data-translate="header-description">24/7 Un P-val ahí donde lo necesites</p>
+    </header>
+
+    <nav>
+        <a href="#inicio" data-translate="nav-home">Inicio</a>
+        <a href="#precios" data-translate="nav-precios">Precios</a>
+        <a href="#como-funciona" data-translate="nav-how-it-works">¿Cómo funciona?</a>
+        <a href="#ubicaciones" data-translate="nav-locations">Ubicaciones</a>
+        <a href="#contacto" data-translate="nav-contact">Contacto</a>
+    </nav>
+
+    <main class="container">
+        <section id="inicio" class="section">
+            <h2 data-translate="welcome-title">Bienvenido a P-Val: Energía Limpia para un Mundo en Movimiento</h2>
+            <p data-translate="welcome-text" style="text-align: justify;">
+                En P-Val, queremos que estés siempre conectado sin comprometer el futuro del planeta. Nuestro servicio de alquiler de cargadores portátiles, alimentado con energía 100% renovable, es la solución perfecta para recargar tus dispositivos mientras te desplazas por la ciudad.
+                ¿Te quedaste sin batería? No te preocupes. Encuentra nuestros puntos de alquiler estratégicamente ubicados y disfruta de una carga rápida, cómoda y sostenible. Además, si eliges moverte a pie, te premiamos con la primera media hora de carga completamente gratis. Porque creemos en un estilo de vida más saludable y en ciudades más limpias.
+                En P-Val, no solo cargamos tus dispositivos, también apoyamos la movilidad sostenible, animándote a caminar y disfrutar de tu entorno mientras reduces tu huella de carbono.</p>
+        </section>
+            <!-- Sección de Precios -->
+        <section id="precios">
+            <h2 data-translate="precio">Precios</h2>
+                <div class="price-list">
+                <div class="price-item">
+                    <h3 data-translate="hora">Por hora</h3>
+                    <p data-translate="por-hora">2€/hora</p>
+                </div>
+                <div class="price-item">
+                    <h3 data-translate="dia">Por día</h3>
+                    <p data-translate="por-dia">8€/día</p>
+                    </div>
+                <div class="price-item">
+                    <h3 data-translate="semana">Por semana</h3>
+                    <p data-translate="por-semana">35€/semana</p>
+                </div>
+            </div>
+            <p data-translate="desembolso">Depósito reembolsable de 10€ al devolver el cargador en perfecto estado.</p>
+        </section>
+        <section id="como-funciona" class="section">
+            <h2 data-translate="how-it-works-title">¡Con P-Val, nunca te quedarás sin batería!</h2>
+            <p data-translate="how-it-works-subtitle">Solo sigue estos simples pasos y mantén tu energía al 100% en todo momento, estés donde estés.</p>
+            <ol id="how-it-works-steps" class="steps-list">
+                <li><img src="solo logo.jpg" alt="Encuentra una estación" /> <span data-translate="step-1">Encuentra una estación cercana usando nuestra app.</span></li>
+                <li><img src="escaner qr.jpg" alt="Escanea el código QR" /> <span data-translate="step-2">Escanea el código QR en la estación para desbloquear un cargador.</span></li>
+                <li><img src="cargar.png" alt="Disfruta de la carga" /> <span data-translate="step-3">Disfruta de la carga mientras te desplazas.</span></li>
+                <li><img src="mapa con puntos.jpg" alt="Devuelve el cargador" /> <span data-translate="step-4">Devuelve el cargador en cualquier estación.</span></li>
+            </ol>
+        </section>
+
+        <section id="ubicaciones" class="section">
+            <h2 data-translate="locations-title">Encuentra tu P-val más cerca de lo que crees</h2>
+            <p data-translate="locations-text" style="text-align: justify;"> 
+                En P-Val, queremos estar siempre a tu alcance. Por eso, nuestras estaciones están estratégicamente distribuidas por toda la ciudad, ubicadas en los lugares más concurridos y de fácil acceso. Ya sea que estés paseando, trabajando o explorando, siempre habrá una estación cerca de ti.
+                Para localizar rápidamente la estación más cercana y mantente siempre conectado, donde sea que estés. Encuentra tu P-val en el siguientes enlaces:</p>
+            <div class="button-group">
+                <a href="https://www.google.com/maps?q=Valencia" target="_blank" class="cta-button" data-translate="find-pval">P-val cerca</a>
+            </div>
+        </section>
+
+        <section id="contacto" class="section">
+            <h2 data-translate="contact-title">Estamos Aquí para Ayudarte</h2>
+            <p data-translate="contact-text">¿Tienes preguntas, sugerencias o necesitas asistencia con nuestro servicio? En P-Val, nos encanta escucharte y asegurarnos de que tengas la mejor experiencia posible.</p>
+            <p data-translate="contact-means">Puedes comunicarte con nosotros a través de los siguientes medios:</p>
+            <ul>
+                <li>📧 <strong>Correo electrónico:</strong> info@pval.com</li>
+                <li>📞 <strong>Teléfono:</strong> +34 123 456 789</li>
+                <li>📍 <strong>Dirección:</strong> Calle pval 23, Valencia, España</li>
+            </ul>
+            <p data-translate="contact-form-text">O, si lo prefieres, completa el formulario a continuación, y nos pondremos en contacto contigo lo antes posible. ¡Estamos aquí para conectar contigo!</p>
+            <form id="contact-form">
+                <label for="nombre" data-translate="form-name">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email" data-translate="form-email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje" data-translate="form-message">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                <button type="submit" data-translate="form-submit">Enviar</button>
+                <p id="form-feedback" style="color: green; display: none;" data-translate="form-feedback">¡Mensaje enviado!</p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p data-translate="footer-text">© 2025 P-val. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            es: {
+                "header-title": "P-val",
+                "header-description": "24/7 Un P-val ahí donde lo necesites",
+                "nav-home": "Inicio",
+                "nav-precios":"Precios",
+                "nav-how-it-works": "¿Cómo funciona?",
+                "nav-locations": "Ubicaciones",
+                "nav-contact": "Contacto",
+                "welcome-title": "Bienvenido a P-Val: Energía Limpia para un Mundo en Movimiento",
+                "welcome-text": "En P-Val, queremos que estés siempre conectado sin comprometer el futuro del planeta. Nuestro servicio de alquiler de cargadores portátiles, alimentado con energía 100% renovable, es la solución perfecta para recargar tus dispositivos mientras te desplazas por la ciudad. ¿Te quedaste sin batería? No te preocupes. Encuentra nuestros puntos de alquiler estratégicamente ubicados y disfruta de una carga rápida, cómoda y sostenible. Además, si eliges moverte a pie, te premiamos con la primera media hora de carga completamente gratis. Porque creemos en un estilo de vida más saludable y en ciudades más limpias. En P-Val, no solo cargamos tus dispositivos, también apoyamos la movilidad sostenible, animándote a caminar y disfrutar de tu entorno mientras reduces tu huella de carbono.",
+                "precio":"Precios",
+                "hora":"Por hora",
+                "por-hora":"2€/hora",
+                "dia":"Por día",
+                "por-dia":"8€/día",
+                "semana":"Por semana",
+                "por-semana":"35€/semana",
+                "desembolso":"Depósito reembolsable de 10€ al devolver el cargador en perfecto estado.",
+                "how-it-works-title": "¡Con P-Val, nunca te quedarás sin batería!",
+                "how-it-works-subtitle": "Solo sigue estos simples pasos y mantén tu energía al 100% en todo momento, estés donde estés.",
+                "step-1": "Encuentra una estación cercana usando nuestra app.",
+                "step-2": "Escanea el código QR en la estación para desbloquear un cargador.",
+                "step-3": "Disfruta de la carga mientras te desplazas.",
+                "step-4": "Devuelve el cargador en cualquier estación.",
+                "locations-title": "Encuentra tu P-val más cerca de lo que crees",
+                "locations-text": "En P-Val, queremos estar siempre a tu alcance. Por eso, nuestras estaciones están estratégicamente distribuidas por toda la ciudad, ubicadas en los lugares más concurridos y de fácil acceso. Ya sea que estés paseando, trabajando o explorando, siempre habrá una estación cerca de ti. Para localizar rápidamente la estación más cercana y mantente siempre conectado, donde sea que estés. Encuentra tu P-val en el siguientes enlaces:",
+                "find-pval": "P-val cerca",
+                "contact-title": "Estamos Aquí para Ayudarte",
+                "contact-text": "¿Tienes preguntas, sugerencias o necesitas asistencia con nuestro servicio? En P-Val, nos encanta escucharte y asegurarnos de que tengas la mejor experiencia posible.",
+                "contact-means": "Puedes comunicarte con nosotros a través de los siguientes medios:",
+                "contact-form-text": "O, si lo prefieres, completa el formulario a continuación, y nos pondremos en contacto contigo lo antes posible. ¡Estamos aquí para conectar contigo!",
+                "form-name": "Nombre:",
+                "form-email": "Email:",
+                "form-message": "Mensaje:",
+                "form-submit": "Enviar",
+                "form-feedback": "¡Mensaje enviado!",
+                "footer-text": "© 2025 P-val. Todos los derechos reservados."
+            },
+            en: {
+                "header-title": "P-val",
+                "header-description": "24/7 A P-val wherever you need it",
+                "nav-home": "Home",
+                "nav-precios":"Prices",
+                "nav-how-it-works": "How it works?",
+                "nav-locations": "Locations",
+                "nav-contact": "Contact",
+                "welcome-title": "Welcome to P-Val: Clean Energy for a World in Motion",
+                "welcome-text": "At P-Val, we want you to always be connected without compromising the future of the planet. Our portable charger rental service, powered by 100% renewable energy, is the perfect solution to recharge your devices while you move around the city. Ran out of battery? Don't worry. Find our strategically located rental points and enjoy fast, convenient and sustainable charging. Plus, if you choose to get around on foot, we'll reward you with the first half hour of charging completely free. Because we believe in a healthier lifestyle and cleaner cities. At P-Val, we don't just charge your devices, we also support sustainable mobility, encouraging you to walk and enjoy your surroundings while reducing your carbon footprint.",
+                "precio":"Prices",
+                "hora":"hourly rental",
+                "por-hora":"2€/hour",
+                "dia":"daily rent",
+                "por-dia":"8€/day",
+                "semana":"weekly rent",
+                "por-semana":"35€/week",
+                "desembolso":"Refundable €10 deposit upon returning the charger in perfect condition.",
+                "how-it-works-title": "With P-Val, you'll never run out of battery!",
+                "how-it-works-subtitle": "Just follow these simple steps and keep your energy at 100% at all times, wherever you are.",
+                "step-1": "Find a nearby station using our app.",
+                "step-2": "Scan the QR code at the station to unlock a charger.",
+                "step-3": "Enjoy the charge while you move.",
+                "step-4": "Return the charger to any station.",
+                "locations-title": "Find Your Energy Closer Than You Think",
+                "locations-text": "At P-Val, we want to always be within your reach. That's why our stations are strategically distributed throughout the city, located in the busiest and most easily accessible places. Whether you're strolling, working or exploring, there will always be a station near you. To quickly locate the nearest station and always stay connected, wherever you are. Find your P-val at the following links:",
+                "find-pval": "Find P-val",
+                "contact-title": "We Are Here to Help You",
+                "contact-text": "Do you have questions, suggestions or need assistance with our service? At P-Val, we love to hear from you and make sure you have the best experience possible.",
+                "contact-means": "You can contact us through the following means:",
+                "contact-form-text": "Or, if you prefer, fill out the form below, and we will get back to you as soon as possible. We are here to connect with you!",
+                "form-name": "Name:",
+                "form-email": "Email:",
+                "form-message": "Message:",
+                "form-submit": "Submit",
+                "form-feedback": "Message sent!",
+                "footer-text": "© 2025 P-val. All rights reserved."
+            }
+        };
+
+        function setLanguage(lang) {
+            const selectedLang = translations[lang];
+            Object.keys(selectedLang).forEach(key => {
+                const elements = document.querySelectorAll(`[data-translate="${key}"]`);
+                elements.forEach(el => {
+                    el.textContent = selectedLang[key];
+                });
+            });
+        }
+
+        // Inicializar con el idioma por defecto
+        setLanguage('es');
+    </script>
+</body>
+</html>
